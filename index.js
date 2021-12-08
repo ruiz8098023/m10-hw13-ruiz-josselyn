@@ -124,30 +124,29 @@ const displayWeatherInfo = (weatherObj) => {
 
   // current temperature
   var temp = document.createElement('p')
-  temp.textContent = "Current: " +
-    weatherObj.actualTemp +
-    "° F"
+
+  //Text literal used
+  temp.textContent = `Current: ${weatherObj.actualTemp} ° F`
   weatherContainer.appendChild(temp)
 
   // "feels like" temperature
   var feelsLikeTemp = document.createElement('p')
-  feelsLikeTemp.textContent = "Feels like: " +
-    weatherObj.feelsLikeTemp +
-    "° F"
+
+  //Text literal used
+  feelsLikeTemp.textContent = `Feels like: ${weatherObj.feelsLikeTemp} ° F`
   weatherContainer.appendChild(feelsLikeTemp)
 
   addBreak()
 
   // time weather was last updated
   var updatedAt = document.createElement('p')
-  updatedAt.textContent = "Last updated: " +
-    weatherObj.updatedAt.toLocaleTimeString(
-      'en-US',
-      {
-        hour: 'numeric',
-        minute: '2-digit'
-      }
-    )
+
+  //Text literal used
+  updatedAt.textContent = `Last updated: 
+  ${weatherObj.updatedAt.toLocaleTimeString(
+        'en-US', { hour: 'numeric', minute: '2-digit'}
+  )}`
+
   weatherContainer.appendChild(updatedAt)
 
 }
