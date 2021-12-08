@@ -4,7 +4,7 @@ var formEl = document.querySelector('form');
 var inputEl = document.querySelector('input');
 
 
-formEl.onsubmit = function(e) {
+formEl.onsubmit = function(e) { //CONVERT TO ARROW FUNCTION
   // prevent the page from refreshing
   e.preventDefault();
 
@@ -13,8 +13,11 @@ formEl.onsubmit = function(e) {
   // abort API call if user entered no value
   if (!userInput) return
   // call the API and then update the page
+  
+
   getWeather(userInput)
-    .then(displayWeatherInfo)
+    .then(displayWeatherInfo) 
+    
     .catch(displayLocNotFound)
 
   // reset form field to a blank state
@@ -22,7 +25,7 @@ formEl.onsubmit = function(e) {
 }
 
 // calls the OpenWeather API and returns an object of weather info
-function getWeather(query) {
+getWeather = (query) => {
   // default search to USA
   if (!query.includes(",")) query += ',us'
   // return the fetch call which returns a promise
@@ -32,10 +35,11 @@ function getWeather(query) {
     query +
     '&units=imperial&appid=6efff70fe1477748e31c17d1c504635f'
   )
-    .then(function(res) {
+    .then(function(res) { //CONVERT TO ASYNC/AWAIT
       return res.json()
     })
-    .then(function(data) {
+    
+    .then(function(data) { //CONVERT TO ASYNC/AWAIT
       // location not found, throw error/reject promise
       if (data.cod === "404") throw new Error('location not found')
       // create weather icon URL
@@ -61,8 +65,9 @@ function getWeather(query) {
     })
 }
 
+
 // show error message when location isn't found
-function displayLocNotFound() {
+const displayLocNotFound = () => {
   // clears any previous weather info
   weatherContainer.innerHTML = "";
   // create h2, add error msg, and add to page
@@ -72,12 +77,21 @@ function displayLocNotFound() {
 }
 
 // updates HTML to display weather info
-function displayWeatherInfo(weatherObj) {
-  // clears any previous weather info
-  weatherContainer.innerHTML = "";
+const displayWeatherInfo = (weatherObj) => {
+  weatherContainer.innerHTML = ``;
+
+  const { 
+    coords: coords1, 
+    description: description1, 
+    iconUrl: iconUrl1, 
+    actualTemp: actualTemp1, 
+    feelsLikeTemp: feelsLikeTemp1, 
+    place: place1, 
+    updatedAt: updatedAt1
+  } = weatherObj
 
   // inserts a linebreak <br> to weather section tag
-  function addBreak() {
+  addBreak = () => {
     weatherContainer.appendChild(
       document.createElement('br')
     )
@@ -135,4 +149,5 @@ function displayWeatherInfo(weatherObj) {
       }
     )
   weatherContainer.appendChild(updatedAt)
+
 }
