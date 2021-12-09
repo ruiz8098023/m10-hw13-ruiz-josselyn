@@ -15,10 +15,10 @@ formEl.onsubmit = function(e) { //CONVERT TO ARROW FUNCTION
   // call the API and then update the page
   
 
-  getWeather(userInput)
-    .then(displayWeatherInfo) 
-    
+ getWeather(userInput)
+    .then(displayWeatherInfo)
     .catch(displayLocNotFound)
+
 
   // reset form field to a blank state
   inputEl.value = ""
